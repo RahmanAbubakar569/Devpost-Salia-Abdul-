@@ -1,0 +1,96 @@
+
+Cashew Soil Monitoring System
+
+This project is a soil monitoring system using an Android app, Wi-Fi hotspot communication, and soil sensor integration.
+
+---
+
+How to Run the Project
+
+1. Download the Project
+
+- Download and unzip the project folder to your desired location.
+
+---
+
+2. Install the Android App
+
+- Download the .apk file from the provided source.
+- Transfer it to your Android device and install it.
+- You may need to enable "Install from Unknown Sources" in your phone settings.
+
+---
+
+3. Set Up the Server (Linux or Windows)
+
+Install Required Packages
+
+From the root of the project directory, run:
+
+pip install -r requirements.txt
+
+Navigate to Server Scripts
+
+cd Source_Code/model&server_script(win&linux)
+
+Run the Server
+
+- On Linux:
+  python3 cashew_server.py
+
+- On Windows (Command Prompt or PowerShell):
+  python cashew_server_win.py
+
+---
+
+4. Create a Wi-Fi Access Point (Hotspot)
+
+Linux (Debian-based)
+
+nmcli dev wifi hotspot ifname wlan0 ssid WLAN password yourpassword
+
+Note: Replace 'wlan0' with your Wi-Fi interface name (check with 'iwconfig' or 'nmcli device status').
+
+Windows
+
+1. Open Command Prompt as Administrator.
+2. Run:
+
+netsh wlan set hostednetwork mode=allow ssid=CashewHotspot key=yourpassword
+netsh wlan start hostednetwork
+
+---
+
+5. Connect Android Device
+
+- Connect your Android phone to the CashewHotspot network.
+- Launch the installed Cashew App.
+- The system will begin communication with the server.
+
+---
+
+6. Set Up the Sensor
+
+1. Insert the sensor into the soil.
+2. Power the sensor using an appropriate power source (USB or battery).
+3. Wait for the red LED to light up — this confirms power and readiness.
+4. Open the Arduino code and update the Wi-Fi credentials:
+
+const char* ssid = "WLAN";
+const char* password = "yourpassword";
+
+5. Upload the updated code to your sensor via the Arduino IDE.
+
+---
+
+System Ready
+
+Once everything is connected:
+
+- The sensor will transmit data to the server via Wi-Fi.
+- The server will process the data.
+- The Android app will display real-time soil monitoring updates.
+
+---
+
+
